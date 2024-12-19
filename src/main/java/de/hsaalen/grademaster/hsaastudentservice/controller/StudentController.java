@@ -1,12 +1,14 @@
 package de.hsaalen.grademaster.hsaastudentservice.controller;
 
 import de.hsaalen.grademaster.hsaastudentservice.domain.Student;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -24,16 +26,235 @@ public class StudentController {
             Map.entry("00006", new Student("00006", "Chris Wilson", "chris.wilson@example.com")),
             Map.entry("00007", new Student("00007", "Jessica Miller", "jessica.miller@example.com")),
             Map.entry("00008", new Student("00008", "Daniel Martinez", "daniel.martinez@example.com")),
-            Map.entry("00009", new Student("00009", "Laura Garcia", "laura.garcia@example.com"))
+            Map.entry("00009", new Student("00009", "Laura Garcia", "laura.garcia@example.com")),
+            Map.entry("00010", new Student("00010", "Matthew Anderson", "matthew.anderson@example.com")),
+            Map.entry("00011", new Student("00011", "Ashley Thomas", "ashley.thomas@example.com")),
+            Map.entry("00012", new Student("00012", "James Taylor", "james.taylor@example.com")),
+            Map.entry("00013", new Student("00013", "Elizabeth Moore", "elizabeth.moore@example.com")),
+            Map.entry("00014", new Student("00014", "David White", "david.white@example.com")),
+            Map.entry("00015", new Student("00015", "Sophia Harris", "sophia.harris@example.com")),
+            Map.entry("00016", new Student("00016", "Andrew Martin", "andrew.martin@example.com")),
+            Map.entry("00017", new Student("00017", "Olivia Jackson", "olivia.jackson@example.com")),
+            Map.entry("00018", new Student("00018", "Joshua Lee", "joshua.lee@example.com")),
+            Map.entry("00019", new Student("00019", "Isabella Perez", "isabella.perez@example.com")),
+            Map.entry("00020", new Student("00020", "Ethan Thompson", "ethan.thompson@example.com")),
+            Map.entry("00021", new Student("00021", "Abigail Clark", "abigail.clark@example.com")),
+            Map.entry("00022", new Student("00022", "Benjamin Lewis", "benjamin.lewis@example.com")),
+            Map.entry("00023", new Student("00023", "Madison Hall", "madison.hall@example.com")),
+            Map.entry("00024", new Student("00024", "Logan Allen", "logan.allen@example.com")),
+            Map.entry("00025", new Student("00025", "Ella Young", "ella.young@example.com")),
+            Map.entry("00026", new Student("00026", "Mason King", "mason.king@example.com")),
+            Map.entry("00027", new Student("00027", "Ava Wright", "ava.wright@example.com")),
+            Map.entry("00028", new Student("00028", "Alexander Scott", "alexander.scott@example.com")),
+            Map.entry("00029", new Student("00029", "Mia Green", "mia.green@example.com")),
+            Map.entry("00030", new Student("00030", "Jacob Adams", "jacob.adams@example.com")),
+            Map.entry("00031", new Student("00031", "Amelia Baker", "amelia.baker@example.com")),
+            Map.entry("00032", new Student("00032", "Lucas Nelson", "lucas.nelson@example.com")),
+            Map.entry("00033", new Student("00033", "Charlotte Carter", "charlotte.carter@example.com")),
+            Map.entry("00034", new Student("00034", "Michael Mitchell", "michael.mitchell@example.com")),
+            Map.entry("00035", new Student("00035", "Grace Roberts", "grace.roberts@example.com")),
+            Map.entry("00036", new Student("00036", "Henry Turner", "henry.turner@example.com")),
+            Map.entry("00037", new Student("00037", "Victoria Phillips", "victoria.phillips@example.com")),
+            Map.entry("00038", new Student("00038", "Samuel Campbell", "samuel.campbell@example.com")),
+            Map.entry("00039", new Student("00039", "Zoe Parker", "zoe.parker@example.com")),
+            Map.entry("00040", new Student("00040", "William Evans", "william.evans@example.com")),
+            Map.entry("00041", new Student("00041", "Emily Edwards", "emily.edwards@example.com")),
+            Map.entry("00042", new Student("00042", "Ryan Collins", "ryan.collins@example.com")),
+            Map.entry("00043", new Student("00043", "Sofia Stewart", "sofia.stewart@example.com")),
+            Map.entry("00044", new Student("00044", "Nathan Sanchez", "nathan.sanchez@example.com")),
+            Map.entry("00045", new Student("00045", "Avery Morris", "avery.morris@example.com")),
+            Map.entry("00046", new Student("00046", "Sebastian Rogers", "sebastian.rogers@example.com")),
+            Map.entry("00047", new Student("00047", "Aria Reed", "aria.reed@example.com")),
+            Map.entry("00048", new Student("00048", "Dylan Cook", "dylan.cook@example.com")),
+            Map.entry("00049", new Student("00049", "Hailey Morgan", "hailey.morgan@example.com")),
+            Map.entry("00050", new Student("00050", "Owen Bell", "owen.bell@example.com")),
+            Map.entry("00051", new Student("00051", "Jack Hill", "jack.hill@example.com")),
+            Map.entry("00052", new Student("00052", "Lily Scott", "lily.scott@example.com")),
+            Map.entry("00053", new Student("00053", "Noah Wood", "noah.wood@example.com")),
+            Map.entry("00054", new Student("00054", "Chloe Hughes", "chloe.hughes@example.com")),
+            Map.entry("00055", new Student("00055", "Liam Ward", "liam.ward@example.com")),
+            Map.entry("00056", new Student("00056", "Sophie Price", "sophie.price@example.com")),
+            Map.entry("00057", new Student("00057", "Eli Morgan", "eli.morgan@example.com")),
+            Map.entry("00058", new Student("00058", "Mila Sanders", "mila.sanders@example.com")),
+            Map.entry("00059", new Student("00059", "Caleb Brooks", "caleb.brooks@example.com")),
+            Map.entry("00060", new Student("00060", "Hannah Reed", "hannah.reed@example.com")),
+            Map.entry("00061", new Student("00061", "Jacob Foster", "jacob.foster@example.com")),
+            Map.entry("00062", new Student("00062", "Avery Peterson", "avery.peterson@example.com")),
+            Map.entry("00063", new Student("00063", "Oliver Perry", "oliver.perry@example.com")),
+            Map.entry("00064", new Student("00064", "Ella Bailey", "ella.bailey@example.com")),
+            Map.entry("00065", new Student("00065", "Ethan Rivera", "ethan.rivera@example.com")),
+            Map.entry("00066", new Student("00066", "Isabelle Murphy", "isabelle.murphy@example.com")),
+            Map.entry("00067", new Student("00067", "Lucas Cooper", "lucas.cooper@example.com")),
+            Map.entry("00068", new Student("00068", "Zoe Richardson", "zoe.richardson@example.com")),
+            Map.entry("00069", new Student("00069", "Nathan Howard", "nathan.howard@example.com")),
+            Map.entry("00070", new Student("00070", "Ava Butler", "ava.butler@example.com")),
+            Map.entry("00071", new Student("00071", "Carter Cox", "carter.cox@example.com")),
+            Map.entry("00072", new Student("00072", "Scarlett Henderson", "scarlett.henderson@example.com")),
+            Map.entry("00073", new Student("00073", "Elijah Reed", "elijah.reed@example.com")),
+            Map.entry("00074", new Student("00074", "Grace Bell", "grace.bell@example.com")),
+            Map.entry("00075", new Student("00075", "Isaac Rogers", "isaac.rogers@example.com")),
+            Map.entry("00076", new Student("00076", "Luna Parker", "luna.parker@example.com")),
+            Map.entry("00077", new Student("00077", "Levi Powell", "levi.powell@example.com")),
+            Map.entry("00078", new Student("00078", "Victoria Ross", "victoria.ross@example.com")),
+            Map.entry("00079", new Student("00079", "Wyatt Gray", "wyatt.gray@example.com")),
+            Map.entry("00080", new Student("00080", "Penelope Bennett", "penelope.bennett@example.com")),
+            Map.entry("00081", new Student("00081", "Alexander Kim", "alexander.kim@example.com")),
+            Map.entry("00082", new Student("00082", "Harper Perez", "harper.perez@example.com")),
+            Map.entry("00083", new Student("00083", "Miles Ward", "miles.ward@example.com")),
+            Map.entry("00084", new Student("00084", "Aria Flores", "aria.flores@example.com")),
+            Map.entry("00085", new Student("00085", "Matthew Brooks", "matthew.brooks@example.com")),
+            Map.entry("00086", new Student("00086", "Chloe Scott", "chloe.scott@example.com")),
+            Map.entry("00087", new Student("00087", "Logan Mitchell", "logan.mitchell@example.com")),
+            Map.entry("00088", new Student("00088", "Ella Kelly", "ella.kelly@example.com")),
+            Map.entry("00089", new Student("00089", "Henry Gonzalez", "henry.gonzalez@example.com")),
+            Map.entry("00090", new Student("00090", "Abigail Torres", "abigail.torres@example.com")),
+            Map.entry("00091", new Student("00091", "Daniel Foster", "daniel.foster@example.com")),
+            Map.entry("00092", new Student("00092", "Sophia Ramirez", "sophia.ramirez@example.com")),
+            Map.entry("00093", new Student("00093", "Sebastian Butler", "sebastian.butler@example.com")),
+            Map.entry("00094", new Student("00094", "Zoe Carter", "zoe.carter@example.com")),
+            Map.entry("00095", new Student("00095", "Ethan Bailey", "ethan.bailey@example.com")),
+            Map.entry("00096", new Student("00096", "Emily Hughes", "emily.hughes@example.com")),
+            Map.entry("00097", new Student("00097", "Oliver Ward", "oliver.ward@example.com")),
+            Map.entry("00098", new Student("00098", "Lily Peterson", "lily.peterson@example.com")),
+            Map.entry("00099", new Student("00099", "James Sanchez", "james.sanchez@example.com")),
+            Map.entry("00100", new Student("00100", "Charlotte Edwards", "charlotte.edwards@example.com")),
+            Map.entry("00101", new Student("00101", "Nathaniel Sanders", "nathaniel.sanders@example.com")),
+            Map.entry("00102", new Student("00102", "Sophia James", "sophia.james@example.com")),
+            Map.entry("00103", new Student("00103", "Benjamin Moore", "benjamin.moore@example.com")),
+            Map.entry("00104", new Student("00104", "Mia Walker", "mia.walker@example.com")),
+            Map.entry("00105", new Student("00105", "Gabriel Turner", "gabriel.turner@example.com")),
+            Map.entry("00106", new Student("00106", "Isabella Harris", "isabella.harris@example.com")),
+            Map.entry("00107", new Student("00107", "Lucas Bailey", "lucas.bailey@example.com")),
+            Map.entry("00108", new Student("00108", "Emma Nelson", "emma.nelson@example.com")),
+            Map.entry("00109", new Student("00109", "Jacob Wright", "jacob.wright@example.com")),
+            Map.entry("00110", new Student("00110", "Olivia Baker", "olivia.baker@example.com")),
+            Map.entry("00111", new Student("00111", "Ethan Carter", "ethan.carter@example.com")),
+            Map.entry("00112", new Student("00112", "Ava Miller", "ava.miller@example.com")),
+            Map.entry("00113", new Student("00113", "Alexander Adams", "alexander.adams@example.com")),
+            Map.entry("00114", new Student("00114", "Charlotte Kelly", "charlotte.kelly@example.com")),
+            Map.entry("00115", new Student("00115", "Daniel Mitchell", "daniel.mitchell@example.com")),
+            Map.entry("00116", new Student("00116", "Ella Perez", "ella.perez@example.com")),
+            Map.entry("00117", new Student("00117", "Michael Ramirez", "michael.ramirez@example.com")),
+            Map.entry("00118", new Student("00118", "Grace Rivera", "grace.rivera@example.com")),
+            Map.entry("00119", new Student("00119", "Matthew Torres", "matthew.torres@example.com")),
+            Map.entry("00120", new Student("00120", "Zoe Hughes", "zoe.hughes@example.com")),
+            Map.entry("00121", new Student("00121", "Henry Howard", "henry.howard@example.com")),
+            Map.entry("00122", new Student("00122", "Emily Brooks", "emily.brooks@example.com")),
+            Map.entry("00123", new Student("00123", "William Scott", "william.scott@example.com")),
+            Map.entry("00124", new Student("00124", "Aria Green", "aria.green@example.com")),
+            Map.entry("00125", new Student("00125", "Logan Foster", "logan.foster@example.com")),
+            Map.entry("00126", new Student("00126", "Hannah Murphy", "hannah.murphy@example.com")),
+            Map.entry("00127", new Student("00127", "Noah Kim", "noah.kim@example.com")),
+            Map.entry("00128", new Student("00128", "Sophie Gonzalez", "sophie.gonzalez@example.com")),
+            Map.entry("00129", new Student("00129", "Jack Bell", "jack.bell@example.com")),
+            Map.entry("00130", new Student("00130", "Mila Collins", "mila.collins@example.com")),
+            Map.entry("00131", new Student("00131", "Elijah Reed", "elijah.reed@example.com")),
+            Map.entry("00132", new Student("00132", "Avery Ward", "avery.ward@example.com")),
+            Map.entry("00133", new Student("00133", "Wyatt Allen", "wyatt.allen@example.com")),
+            Map.entry("00134", new Student("00134", "Luna Wright", "luna.wright@example.com")),
+            Map.entry("00135", new Student("00135", "Levi Harris", "levi.harris@example.com")),
+            Map.entry("00136", new Student("00136", "Victoria Wood", "victoria.wood@example.com")),
+            Map.entry("00137", new Student("00137", "Isaac Price", "isaac.price@example.com")),
+            Map.entry("00138", new Student("00138", "Scarlett Wilson", "scarlett.wilson@example.com")),
+            Map.entry("00139", new Student("00139", "Miles Thompson", "miles.thompson@example.com")),
+            Map.entry("00140", new Student("00140", "Harper Hall", "harper.hall@example.com")),
+            Map.entry("00141", new Student("00141", "Eli Peterson", "eli.peterson@example.com")),
+            Map.entry("00142", new Student("00142", "Madison Mitchell", "madison.mitchell@example.com")),
+            Map.entry("00143", new Student("00143", "Sebastian Nelson", "sebastian.nelson@example.com")),
+            Map.entry("00144", new Student("00144", "Hailey Gonzalez", "hailey.gonzalez@example.com")),
+            Map.entry("00145", new Student("00145", "Dylan Bell", "dylan.bell@example.com")),
+            Map.entry("00146", new Student("00146", "Aria Turner", "aria.turner@example.com")),
+            Map.entry("00147", new Student("00147", "Benjamin James", "benjamin.james@example.com")),
+            Map.entry("00148", new Student("00148", "Sofia Flores", "sofia.flores@example.com")),
+            Map.entry("00149", new Student("00149", "Logan Phillips", "logan.phillips@example.com")),
+            Map.entry("00150", new Student("00150", "Isabelle Evans", "isabelle.evans@example.com")),
+            Map.entry("00151", new Student("00151", "Ryan Morgan", "ryan.morgan@example.com")),
+            Map.entry("00152", new Student("00152", "Chloe Carter", "chloe.carter@example.com")),
+            Map.entry("00153", new Student("00153", "Liam Torres", "liam.torres@example.com")),
+            Map.entry("00154", new Student("00154", "Layla Ramirez", "layla.ramirez@example.com")),
+            Map.entry("00155", new Student("00155", "Oliver Bailey", "oliver.bailey@example.com")),
+            Map.entry("00156", new Student("00156", "Aubrey Rivera", "aubrey.rivera@example.com")),
+            Map.entry("00157", new Student("00157", "Caleb Hughes", "caleb.hughes@example.com")),
+            Map.entry("00158", new Student("00158", "Lily Brooks", "lily.brooks@example.com")),
+            Map.entry("00159", new Student("00159", "Jayden Howard", "jayden.howard@example.com")),
+            Map.entry("00160", new Student("00160", "Penelope Scott", "penelope.scott@example.com")),
+            Map.entry("00161", new Student("00161", "Nathan Green", "nathan.green@example.com")),
+            Map.entry("00162", new Student("00162", "Elena Wood", "elena.wood@example.com")),
+            Map.entry("00163", new Student("00163", "Carter Price", "carter.price@example.com")),
+            Map.entry("00164", new Student("00164", "Savannah Hall", "savannah.hall@example.com")),
+            Map.entry("00165", new Student("00165", "Grayson Cooper", "grayson.cooper@example.com")),
+            Map.entry("00166", new Student("00166", "Stella Murphy", "stella.murphy@example.com")),
+            Map.entry("00167", new Student("00167", "Leah Flores", "leah.flores@example.com")),
+            Map.entry("00168", new Student("00168", "Eli Bell", "eli.bell@example.com")),
+            Map.entry("00169", new Student("00169", "Zoey Reed", "zoey.reed@example.com")),
+            Map.entry("00170", new Student("00170", "Hudson Walker", "hudson.walker@example.com")),
+            Map.entry("00171", new Student("00171", "Paisley James", "paisley.james@example.com")),
+            Map.entry("00172", new Student("00172", "Aaron Scott", "aaron.scott@example.com")),
+            Map.entry("00173", new Student("00173", "Violet Adams", "violet.adams@example.com")),
+            Map.entry("00174", new Student("00174", "Colton Carter", "colton.carter@example.com")),
+            Map.entry("00175", new Student("00175", "Hazel Nelson", "hazel.nelson@example.com")),
+            Map.entry("00176", new Student("00176", "Cooper Collins", "cooper.collins@example.com")),
+            Map.entry("00177", new Student("00177", "Aurora Hughes", "aurora.hughes@example.com")),
+            Map.entry("00178", new Student("00178", "Ezekiel Gonzalez", "ezekiel.gonzalez@example.com")),
+            Map.entry("00179", new Student("00179", "Audrey Bell", "audrey.bell@example.com")),
+            Map.entry("00180", new Student("00180", "Everett Turner", "everett.turner@example.com")),
+            Map.entry("00181", new Student("00181", "Naomi Mitchell", "naomi.mitchell@example.com")),
+            Map.entry("00182", new Student("00182", "Silas Reed", "silas.reed@example.com")),
+            Map.entry("00183", new Student("00183", "Piper Walker", "piper.walker@example.com")),
+            Map.entry("00184", new Student("00184", "Roman Perry", "roman.perry@example.com")),
+            Map.entry("00185", new Student("00185", "Clara Rivera", "clara.rivera@example.com")),
+            Map.entry("00186", new Student("00186", "Axel Howard", "axel.howard@example.com")),
+            Map.entry("00200", new Student("00200", "Gabriel Cooper", "gabriel.cooper@example.com")),
+            Map.entry("00201", new Student("00201", "Liam Brooks", "liam.brooks@example.com")),
+            Map.entry("00202", new Student("00202", "Ella Foster", "ella.foster@example.com")),
+            Map.entry("00203", new Student("00203", "Noah Powell", "noah.powell@example.com")),
+            Map.entry("00204", new Student("00204", "Grace Jenkins", "grace.jenkins@example.com")),
+            Map.entry("00205", new Student("00205", "Lucas Ward", "lucas.ward@example.com")),
+            Map.entry("00206", new Student("00206", "Mia Watson", "mia.watson@example.com")),
+            Map.entry("00207", new Student("00207", "Ethan Rivera", "ethan.rivera@example.com")),
+            Map.entry("00208", new Student("00208", "Chloe Diaz", "chloe.diaz@example.com")),
+            Map.entry("00209", new Student("00209", "Matthew Russell", "matthew.russell@example.com")),
+            Map.entry("00210", new Student("00210", "Sophia Price", "sophia.price@example.com")),
+            Map.entry("00211", new Student("00211", "Jackson Bennett", "jackson.bennett@example.com")),
+            Map.entry("00212", new Student("00212", "Harper Gray", "harper.gray@example.com")),
+            Map.entry("00213", new Student("00213", "Alexander Kelly", "alexander.kelly@example.com")),
+            Map.entry("00214", new Student("00214", "Ella Morgan", "ella.morgan@example.com")),
+            Map.entry("00215", new Student("00215", "James Howard", "james.howard@example.com")),
+            Map.entry("00216", new Student("00216", "Scarlett Cox", "scarlett.cox@example.com")),
+            Map.entry("00217", new Student("00217", "Henry Richardson", "henry.richardson@example.com")),
+            Map.entry("00218", new Student("00218", "Victoria Perry", "victoria.perry@example.com")),
+            Map.entry("00219", new Student("00219", "Owen Rogers", "owen.rogers@example.com")),
+            Map.entry("00220", new Student("00220", "Layla Peterson", "layla.peterson@example.com"))
     );
 
-    @GetMapping
-    public List<Student> getCountries(){
-        return STUDENTS.values().stream().toList();
-    }
-
-    @GetMapping("/{matriculationNumber}")
-    public Student getStudent(@PathVariable String matriculationNumber){
-        return STUDENTS.get(matriculationNumber);
+    @GetMapping()
+    @Operation(summary = "Find individual Student in HSAA Database", description = "Find a student by their matriculation number")
+    @ApiResponses(
+            value = {
+                    @ApiResponse(
+                            responseCode = "200",
+                            description = "Student found",
+                            content = {
+                                    @io.swagger.v3.oas.annotations.media.Content(mediaType = "application/json",
+                                            schema = @io.swagger.v3.oas.annotations.media.Schema(implementation = Student.class))
+                            }
+                    ),
+                    @ApiResponse(responseCode = "404", description = "Student not found"),
+                    @ApiResponse(responseCode = "401", description = "Unauthorized"),
+                    @ApiResponse(responseCode = "403", description = "Forbidden")
+            }
+    )
+    public ResponseEntity<Student> getStudent(@RequestParam String matriculationNumber, @RequestHeader(value = "Api-Key", required = false) String apiKey) {
+        if (!StringUtils.hasText(apiKey)) {
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+        }
+        if (!apiKey.equals("63492993-4d04-4bf1-b991-0e92339e7c90")) {
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        }
+        if (!STUDENTS.containsKey(matriculationNumber)) {
+            return ResponseEntity.notFound().build();
+        } else {
+            return ResponseEntity.ok(STUDENTS.get(matriculationNumber));
+        }
     }
 }
